@@ -82,7 +82,8 @@ os_info = OSInfo()
 
 
 def _load_env_file(filename):
-    return dict(l.split("=", 1) for l in load(filename).splitlines())
+    env_vars = [l.split("=", 1) for l in load(filename).splitlines()]
+    return dict(l for l in env_vars if len(l) == 2) # return only key-value pairs
 
 
 class PosixShellCommands(object):
